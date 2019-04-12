@@ -22,7 +22,7 @@ public class DefaultStream implements Operation<UserBase> {
     @Override
     public Collection<UserBase> removeAllOlder(Collection<UserBase> entities, int age) {
         return entities.stream()
-                .filter(userBase -> userBase.getAge() < age)
+                .filter(userBase -> userBase.getAge() <= age)
                 .collect(Collectors.toList());
     }
 
@@ -51,8 +51,9 @@ public class DefaultStream implements Operation<UserBase> {
     @Override
     public boolean isCharacterPresentInAllNames(Collection<UserBase> entities, String character) {
         return entities.stream()
-                .allMatch(userBase -> userBase.getName()
-                        .contains(character));
+                .allMatch(userBase ->
+                        userBase.getName().toLowerCase()
+                                .contains(character.toLowerCase()));
     }
 
     @Override
