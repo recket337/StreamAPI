@@ -42,7 +42,10 @@ public class DefaultStream implements Operation<UserBase> {
 
     @Override
     public Collection<UserBase> getTwoUsersStartingFromSecond(Collection<UserBase> entities) {
-        return null;
+        return entities.stream()
+                .skip(1)
+                .limit(2)
+                .collect(Collectors.toList());
     }
 
     @Override
